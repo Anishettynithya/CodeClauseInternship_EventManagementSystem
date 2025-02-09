@@ -32,3 +32,4 @@ function displayRecommendedEvents() {
 
 // Call the function after the page loads
 document.addEventListener("DOMContentLoaded", displayRecommendedEvents);
+use:-<script src="js/events.js"></script>
