@@ -1,0 +1,2 @@
+# CodeClauseInternship_EventManagementSystem
+It is all about Event_managment_sysyem
