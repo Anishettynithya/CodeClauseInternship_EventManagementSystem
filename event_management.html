@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px;
+        }
+        section {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI-Powered Event Management System</h1>
+        <input type="text" id="eventSearch" placeholder="Search for events...">
+        <button onclick="searchEvents()">Search</button>
+        <button onclick="startVoiceSearch()">🎤 Voice Search</button>
+    </header>
+    
+    <section id="eventRecommendations">
+        <h2>Recommended Events</h2>
+        <div id="eventsList">No events available.</div>
+    </section>
+
+    <section id="eventMap">
+        <h2>3D Interactive Event Map</h2>
+        <div id="mapContainer">[3D Map Placeholder]</div>
+    </section>
+
+    <section id="arPreview">
+        <h2>AR Event Preview</h2>
+        <p>Scan the QR code below to preview the event venue in Augmented Reality:</p>
+        <img src="qrcode.png" alt="QR Code for AR Preview">
+    </section>
+
+    <script>
+        function searchEvents() {
+            let query = document.getElementById("eventSearch").value.toLowerCase();
+            let events = ["Music Festival", "Tech Conference", "Sports Event", "Art Exhibition"];
+            let results = events.filter(event => event.toLowerCase().includes(query));
+            document.getElementById("eventsList").innerHTML = results.length ? results.join("<br>") : "No events found.";
+        }
+
+        function startVoiceSearch() {
+            let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.onresult = function(event) {
+                document.getElementById("eventSearch").value = event.results[0][0].transcript;
+                searchEvents();
+            };
+            recognition.start();
+        }
+    </script>
+</body>
+</html>
